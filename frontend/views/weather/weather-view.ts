@@ -22,13 +22,12 @@ export class WeatherView extends View {
         <vaadin-radio-button value="Celcius">Celcius </vaadin-radio-button>
         <vaadin-radio-button value="Farenheit">Farenheit</vaadin-radio-button>
       </vaadin-radio-group>
-      <span>${this.temp?.value} ${this.temp?.unit}</span>
+      <span>The current temperature is: ${this.temp?.value} ${this.temp?.unit}</span>
       `;
   }
 
   private async cityChanged(event: CustomEvent) {
-    this.city = {...this.city, name:event.detail.value};
-    this.temp = await WeatherEndpoint.getTemperature(this.city);
+    
   }
 
   private async unitChanged(event: CustomEvent) {
@@ -36,16 +35,7 @@ export class WeatherView extends View {
   }
 
   private convertTemp (temp: Temperature, targetUnit: String): Temperature {
-    if(temp.unit === 'Celcius' && targetUnit === 'Farenheit') {
-      const unit = 'Farenheit';
-      const value = temp.value*9/5 + 32;
-      return {value, unit};
-    }
-    if(temp.unit === 'Farenheit' && targetUnit === 'Celcius') {
-      const unit = 'Celcius';
-      const value = (temp.value - 32) * 5/9
-      return {value, unit}
-    }
+    
     return temp;
   }
 
