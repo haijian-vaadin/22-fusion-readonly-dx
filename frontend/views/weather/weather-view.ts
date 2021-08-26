@@ -34,7 +34,7 @@ export class WeatherView extends View {
     this.temp = this.convertTemp(this.temp, event.detail.value);
   }
 
-  private convertTemp (temp: Temperature, targetUnit: String): Temperature {
+  private convertTemp (temp: Temperature, targetUnit: string): Temperature {
     
     return temp;
   }
